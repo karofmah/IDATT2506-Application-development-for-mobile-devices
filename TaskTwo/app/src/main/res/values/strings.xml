@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TaskTwo</string>
+    <string name="generate_random_number">Generate random number</string>
+    <string name="main_activity">Main activity</string>
+    <string name="button">Button</string>
+    <string name="generate_random_number_activity">GenerateRandomNumberActivity</string>
+
+</resources>
