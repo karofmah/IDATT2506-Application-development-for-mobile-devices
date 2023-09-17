@@ -27,8 +27,21 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="247dp"
         android:onClick="onClickStartGenerateRandomNumberActivity"
-        android:text="@string/generate_random_number_activity"
+        android:text="@string/start_generate_random_number_activity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="148dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/button_start_activity"
+        app:layout_constraintTop_toBottomOf="@+id/button_start_activity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

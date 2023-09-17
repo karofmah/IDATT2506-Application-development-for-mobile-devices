@@ -11,14 +11,11 @@ class GenerateRandomNumberActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_generate_random_number)
-
     }
 
     fun onClickGenerateRandomNumber(view: View) {
-
         val upperLimit = intent.getIntExtra("upperLimit", 100)
         val result = (0..upperLimit).random()
-        Log.i("Result", result.toString())
         setResult(RESULT_OK, Intent().putExtra("Result", result))
         finish()
     }
