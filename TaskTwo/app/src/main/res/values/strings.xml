@@ -3,6 +3,7 @@
     <string name="generate_random_number">Generate random number</string>
     <string name="main_activity">Main activity</string>
     <string name="button">Button</string>
-    <string name="generate_random_number_activity">GenerateRandomNumberActivity</string>
+    <string name="generate_random_number_activity">Generate RandomNumber Activity</string>
+    <string name="generate_number">Generate number</string>
 
 </resources>
