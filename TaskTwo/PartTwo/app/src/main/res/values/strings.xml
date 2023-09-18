@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">PartTwo</string>
+    <string name="add">Adder</string>
+    <string name="multiply">Multipliser</string>
+    <string name="answer">Svar:</string>
+    <string name="upper_limit">Øvre grense:</string>
+    <string name="correct">Riktig</string>
+    <string name="incorrect">Feil. Riktig svar er</string>
+    <string name="number_one">Første tall:</string>
+    <string name="number_two">Andre tall:</string>
+    <string name="_10">10</string>
+    <string name="_8">8</string>
+    <string name="_3">3</string>
+    <string name="_5">5</string>
+
+
 </resources>

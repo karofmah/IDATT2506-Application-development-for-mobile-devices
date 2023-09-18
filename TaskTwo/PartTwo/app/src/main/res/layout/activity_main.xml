@@ -7,12 +7,130 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/numberOne"
+        android:layout_width="95dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="174dp"
+        android:layout_marginBottom="113dp"
+        android:text="@string/number_one"
+        app:layout_constraintBottom_toTopOf="@+id/answerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.199"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.247" />
+
+    <TextView
+        android:id="@+id/numberTwo"
+        android:layout_width="84dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="47dp"
+        android:text="@string/number_two"
+        app:layout_constraintStart_toStartOf="@+id/numberOne"
+        app:layout_constraintTop_toBottomOf="@+id/numberOne" />
+
+    <TextView
+        android:id="@+id/numberOneValue"
+        android:layout_width="82dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="174dp"
+        android:layout_marginBottom="113dp"
+        android:text="@string/_3"
+        app:layout_constraintBottom_toTopOf="@+id/answerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/numberTwoValue"
+        android:layout_width="84dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/_5"
+        app:layout_constraintStart_toStartOf="@+id/numberOne"
+        app:layout_constraintTop_toBottomOf="@+id/numberOne" />
+
+    <EditText
+        android:id="@+id/editAnswer"
+        android:layout_width="64dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="156dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/answerView"
+        app:layout_constraintStart_toStartOf="@+id/numberTwo"
+        app:layout_constraintTop_toBottomOf="@+id/numberTwo"
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/editUpperLimit"
+        android:layout_width="70dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="121dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/upperLimitView"
+        app:layout_constraintStart_toStartOf="@+id/editAnswer"
+        app:layout_constraintTop_toBottomOf="@+id/editAnswer"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/answerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="75dp"
+        android:text="@string/answer"
+        app:layout_constraintBottom_toTopOf="@+id/upperLimitView"
+        app:layout_constraintEnd_toStartOf="@+id/editAnswer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberOne" />
+
+    <TextView
+        android:id="@+id/upperLimitView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginStart="63dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="291dp"
+        android:text="@string/upper_limit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editUpperLimit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/answerView" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="@string/add"
+        app:layout_constraintBaseline_toBaselineOf="@+id/multiplyButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/multiplyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="61dp"
+        android:text="@string/multiply"
+        app:layout_constraintStart_toEndOf="@+id/addButton"
+        app:layout_constraintTop_toBottomOf="@+id/editUpperLimit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
