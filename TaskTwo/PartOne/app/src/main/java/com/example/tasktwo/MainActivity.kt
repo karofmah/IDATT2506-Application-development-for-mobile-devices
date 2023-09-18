@@ -1,6 +1,5 @@
 package com.example.tasktwo
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -15,7 +14,6 @@ class MainActivity : Activity() {
     private var upperLimit = 100
     private val requestCode = 1
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
