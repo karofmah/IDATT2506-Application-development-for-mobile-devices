@@ -120,6 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:text="@string/add"
+        android:onClick="onClickAddButton"
         app:layout_constraintBaseline_toBaselineOf="@+id/multiplyButton"
         app:layout_constraintStart_toStartOf="parent" />
 
