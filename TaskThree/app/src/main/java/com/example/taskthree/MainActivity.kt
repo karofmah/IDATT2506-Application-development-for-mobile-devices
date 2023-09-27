@@ -20,7 +20,7 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
     }
 
-    private fun initList() {
+    private fun createList() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_activated_1, dyrenavn)
         val listView = findViewById<ListView>(R.id.listView)
         listView.adapter = adapter
