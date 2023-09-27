@@ -12,95 +12,40 @@
         tools:ignore="MissingConstraints">
 
 
-        <TextView
-            android:id="@+id/addFriendText"
-            android:layout_width="153dp"
-            android:layout_height="42dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="377dp"
-            android:layout_marginEnd="192dp"
-            android:text="@string/add_friend"
-            android:textSize="32sp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="480dp" />
-
         <ListView
             android:id="@+id/friendList"
-            android:layout_width="304dp"
-            android:layout_height="195dp"
+            android:layout_width="284dp"
+            android:layout_height="487dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="49dp"
-            android:layout_marginTop="139dp"
+            android:layout_marginStart="59dp"
+            android:layout_marginTop="103dp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="70dp"
             tools:layout_editor_absoluteY="239dp" />
 
-        <TextView
-            android:id="@+id/friendListText"
-            android:layout_width="153dp"
-            android:layout_height="42dp"
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="57dp"
-            android:layout_marginTop="54dp"
-            android:text="@string/friend_list"
-            android:textSize="32sp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="109dp" />
-
-        <LinearLayout
-            android:layout_width="299dp"
-            android:layout_height="268dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="39dp"
-            android:layout_marginBottom="13dp"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints">
+            android:layout_marginStart="142dp"
+            android:layout_marginBottom="42dp"
+            android:text="@string/add_friend"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="50dp"
-                android:ems="10"
-                android:inputType="text"
-                android:text="@string/birth_date"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="54dp"
-                tools:layout_editor_absoluteY="530dp" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="126dp"
+            android:layout_marginBottom="659dp"
+            android:text="@string/friend_list"
+            android:textSize="32dp" />
 
-            <EditText
-                android:id="@+id/editTextText"
-                android:layout_width="200dp"
-                android:layout_height="43dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="30dp"
-                android:ems="10"
-                android:inputType="text"
-                android:text="@string/name"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="70dp"
-                tools:layout_editor_absoluteY="551dp" />
-
-            <Button
-                android:id="@+id/addFriendButton"
-                android:layout_width="160dp"
-                android:layout_height="48dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="28dp"
-                android:text="@string/add_friend_button"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="70dp"
-                tools:layout_editor_absoluteY="652dp" />
-        </LinearLayout>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
