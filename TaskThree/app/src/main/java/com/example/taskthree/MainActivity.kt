@@ -6,20 +6,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
-import android.widget.GridView
 import android.widget.ListView
-import android.widget.Spinner
-import android.widget.TextView
 
 class MainActivity : Activity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val listView = findViewById<View>(R.id.friendList) as ListView
+
+        val list = ArrayList<Friend>()
+        val one = Friend("one","1")
+        list.add(one)
+
+        val adapter = FriendListAdapter(this, 1,list)
+        listView.adapter = adapter
     }
 
     fun onClickStartAddFriendActivity(v: View?) {

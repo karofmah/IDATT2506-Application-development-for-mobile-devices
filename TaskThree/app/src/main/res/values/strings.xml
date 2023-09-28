@@ -3,4 +3,5 @@
     <string name="friend_list">Friend List</string>
     <string name="add_friend">Add friend</string>
     <string name="name">Name</string>
+    <string name="birth_date">Birth Date</string>
 </resources>
