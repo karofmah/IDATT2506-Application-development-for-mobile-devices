@@ -1,7 +1,10 @@
 package com.example.taskthree
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
@@ -13,12 +16,21 @@ import android.widget.TextView
 
 class MainActivity : Activity() {
 
-    private var dyrenavn: Array<String> = arrayOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    fun onClickStartAddFriendActivity(v: View?) {
+        val intent = Intent(".AddFriendActivity")
+        try {
+            startActivityForResult(intent, 1)
+        } catch (e: ActivityNotFoundException) {
+            e.message?.let { Log.e("onClickStartAddFriendActivity()", it) }
+        }
+    }
+
 /*
     private fun createList() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_activated_1, dyrenavn)
