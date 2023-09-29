@@ -3,7 +3,6 @@ package com.example.taskthree
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
@@ -11,7 +10,7 @@ import android.widget.TextView
 
 class EditFriendActivity : Activity() {
 
-    lateinit var birthDatePicker:DatePicker
+    private lateinit var birthDatePicker:DatePicker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +19,7 @@ class EditFriendActivity : Activity() {
         val editButton = findViewById<Button>(R.id.editBackButton)
         editButton.setOnClickListener{finish()}
 
-        updateFriend();
+        updateFriend()
     }
     private fun updateFriend(){
         val name = intent.getStringExtra("Name").toString()
@@ -29,8 +28,7 @@ class EditFriendActivity : Activity() {
         val day = birthDate.substring(0,2).toInt()
         val month = birthDate.substring(3,5).toInt()
         val year = birthDate.substring(6,10).toInt()
-        Log.d("Date", birthDate)
-        Log.d("Date",year.toString())
+
         birthDatePicker= findViewById(R.id.editDatePicker)
         birthDatePicker.updateDate(year,month - 1 ,day)
 

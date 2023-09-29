@@ -32,18 +32,15 @@ class MainActivity : Activity() {
     }
     private fun onClickEditFriendListener(listView: ListView){
         listView.onItemClickListener =
-            OnItemClickListener { parent: AdapterView<*>?, valgt: View, index: Int, id: Long ->
+            OnItemClickListener { _: AdapterView<*>?, _: View, index: Int, _: Long ->
                 val intent = Intent(".EditFriendActivity")
                 val name = globalFriendList[index].name
                 val birthDate = globalFriendList[index].birthDate
                 intent.putExtra("Name",name)
                     .putExtra("Birth Date", birthDate)
                     .putExtra("Index",index)
-                try {
-                    startActivityForResult(intent, editFriendRequestCode)
-                } catch (e: ActivityNotFoundException) {
-                    e.message?.let { Log.e("On start edit friend activity", it) }
-                }
+
+               startEditFriendActivity()
             }
     }
     fun onClickStartAddFriendActivity(v: View?) {
@@ -52,6 +49,13 @@ class MainActivity : Activity() {
             startActivityForResult(intent, addFriendRequestCode)
         } catch (e: ActivityNotFoundException) {
             e.message?.let { Log.e("onClickStartAddFriendActivity()", it) }
+        }
+    }
+    private fun startEditFriendActivity(){
+        try {
+            startActivityForResult(intent, editFriendRequestCode)
+        } catch (e: ActivityNotFoundException) {
+            e.message?.let { Log.e("On start edit friend activity", it) }
         }
     }
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
