@@ -31,27 +31,27 @@ class MainActivity : Activity() {
         onClickEditFriendListener(listView)
     }
     private fun onClickEditFriendListener(listView: ListView){
+        val intent = Intent(".EditFriendActivity")
         listView.onItemClickListener =
             OnItemClickListener { _: AdapterView<*>?, _: View, index: Int, _: Long ->
-                val intent = Intent(".EditFriendActivity")
                 val name = globalFriendList[index].name
                 val birthDate = globalFriendList[index].birthDate
                 intent.putExtra("Name",name)
                     .putExtra("Birth Date", birthDate)
                     .putExtra("Index",index)
 
-               startEditFriendActivity()
+               startEditFriendActivity(intent)
             }
     }
     fun onClickStartAddFriendActivity(v: View?) {
-        val intent = Intent(".AddFriendActivity")
         try {
+            val intent = Intent(".AddFriendActivity")
             startActivityForResult(intent, addFriendRequestCode)
         } catch (e: ActivityNotFoundException) {
             e.message?.let { Log.e("onClickStartAddFriendActivity()", it) }
         }
     }
-    private fun startEditFriendActivity(){
+    private fun startEditFriendActivity(intent: Intent){
         try {
             startActivityForResult(intent, editFriendRequestCode)
         } catch (e: ActivityNotFoundException) {
