@@ -4,4 +4,7 @@
     <string name="add_friend">Add friend</string>
     <string name="name">Name</string>
     <string name="birth_date">Birth Date</string>
+    <string name="edit_friend">Edit friend</string>
+    <string name="save_changes">Save changes</string>
+    <string name="back">Back</string>
 </resources>

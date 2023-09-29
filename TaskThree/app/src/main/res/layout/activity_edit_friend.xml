@@ -16,12 +16,12 @@
 
 
         <TextView
-            android:id="@+id/addFriendText"
+            android:id="@+id/editFriendText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="50dp"
-            android:text="@string/add_friend"
+            android:text="@string/edit_friend"
             android:textSize="50sp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="41dp"
@@ -59,8 +59,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
             android:layout_marginBottom="16dp"
-            android:text="@string/add_friend"
+            android:text="@string/save_changes"
             android:onClick="onClickSaveButton"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:id="@+id/editBackButton"
+            android:layout_width="167dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginBottom="13dp"
+            android:text="@string/back"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </LinearLayout>
