@@ -8,21 +8,14 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.TextView
 
 class MainActivity : Activity() {
 
+    private val friendList = ArrayList<Friend>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val listView = findViewById<View>(R.id.friendList) as ListView
-
-        val list = ArrayList<Friend>()
-        val one = Friend("one","1")
-        list.add(one)
-
-        val adapter = FriendListAdapter(this, 1,list)
-        listView.adapter = adapter
     }
 
     fun onClickStartAddFriendActivity(v: View?) {
@@ -32,6 +25,35 @@ class MainActivity : Activity() {
         } catch (e: ActivityNotFoundException) {
             e.message?.let { Log.e("onClickStartAddFriendActivity()", it) }
         }
+    }
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode != RESULT_OK) {
+            Log.e("onActivityResult()", "Something went wrong")
+            return
+        }
+        if (requestCode == 1) {
+
+            val name = data?.getStringExtra("name")
+            val birthDate = data?.getStringExtra("Birth Date")
+
+            if(name.isNullOrEmpty()){
+                Log.e("onActivityResult()", "Name is not defined")
+                return
+            }
+            if(birthDate.isNullOrEmpty()){
+                Log.e("onActivityResult()", "Birth date is not defined")
+                return
+            }
+            val newFriend = Friend(name.toString(),birthDate.toString())
+            friendList.add(newFriend)
+            Log.d("Result", name.toString())
+
+            val listView = findViewById<View>(R.id.friendList) as ListView
+
+            val adapter = FriendListAdapter(this, 1,friendList)
+            listView.adapter = adapter
+        }
+
     }
 
 /*

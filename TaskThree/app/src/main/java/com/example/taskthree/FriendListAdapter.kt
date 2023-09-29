@@ -23,7 +23,7 @@ class FriendListAdapter(private val context: Activity,resource: Int, private val
         birthDateText.text = friends[position].birthDate
 
         return rowView
-       
+
     }
 }
 
