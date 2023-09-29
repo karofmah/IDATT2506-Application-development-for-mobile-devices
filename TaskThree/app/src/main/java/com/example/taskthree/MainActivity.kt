@@ -6,32 +6,58 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
+import android.widget.AdapterView
 import android.widget.ListView
-import android.widget.TextView
+import android.widget.AdapterView.OnItemClickListener
 
 class MainActivity : Activity() {
 
-    private val friendList = ArrayList<Friend>()
+    private val addFriendRequestCode = 1;
+    private val editFriendRequestCode = 2
+    companion object{
+        val globalFriendList = ArrayList<Friend>()
+
+    }
+    private lateinit var adapter: FriendListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        adapter = FriendListAdapter(this, 1, globalFriendList)
+
+        val listView = findViewById<View>(R.id.friendList) as ListView
+        listView.adapter = adapter
+
+        listView.onItemClickListener =
+            OnItemClickListener { parent: AdapterView<*>?, valgt: View, posisjon: Int, id: Long ->
+                val intent = Intent(".EditFriendActivity")
+                val name = globalFriendList[posisjon].name
+                val birthDate = globalFriendList[posisjon].birthDate
+                intent.putExtra("Name",name).putExtra("Birth Date", birthDate)
+                try {
+                    startActivityForResult(intent, editFriendRequestCode)
+                } catch (e: ActivityNotFoundException) {
+                    e.message?.let { Log.e("On start edit friend activity", it) }
+                }
+            }
     }
 
     fun onClickStartAddFriendActivity(v: View?) {
         val intent = Intent(".AddFriendActivity")
         try {
-            startActivityForResult(intent, 1)
+            startActivityForResult(intent, addFriendRequestCode)
         } catch (e: ActivityNotFoundException) {
             e.message?.let { Log.e("onClickStartAddFriendActivity()", it) }
         }
     }
+
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode != RESULT_OK) {
             Log.e("onActivityResult()", "Something went wrong")
             return
         }
-        if (requestCode == 1) {
+        else if (requestCode == addFriendRequestCode) {
 
             val name = data?.getStringExtra("name")
             val birthDate = data?.getStringExtra("Birth Date")
@@ -40,32 +66,19 @@ class MainActivity : Activity() {
                 Log.e("onActivityResult()", "Name is not defined")
                 return
             }
-            if(birthDate.isNullOrEmpty()){
+            else if(birthDate.isNullOrEmpty()){
                 Log.e("onActivityResult()", "Birth date is not defined")
                 return
             }
-            val newFriend = Friend(name.toString(),birthDate.toString())
-            friendList.add(newFriend)
-            Log.d("Result", name.toString())
-
-            val listView = findViewById<View>(R.id.friendList) as ListView
-
-            val adapter = FriendListAdapter(this, 1,friendList)
-            listView.adapter = adapter
-        }
-
-    }
-
-/*
-    private fun createList() {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_activated_1, dyrenavn)
-        val listView = findViewById<ListView>(R.id.listView)
-        listView.adapter = adapter
-        listView.choiceMode = ListView.CHOICE_MODE_SINGLE
-        listView.onItemClickListener =
-            OnItemClickListener { parent: AdapterView<*>?, valgt: View, posisjon: Int, id: Long ->
-                findViewById<TextView>(R.id.beskrivelse).text = dyrebeskrivelse[posisjon]
-                findViewById<Spinner>(R.id.spinner).setSelection(posisjon)
+            else{
+                adapter.notifyDataSetChanged()
             }
-    }*/
+        }
+        else if(requestCode == editFriendRequestCode){
+
+        }else{
+            Log.e("onActivityResult()", "Wrong request code")
+            return
+        }
+    }
 }

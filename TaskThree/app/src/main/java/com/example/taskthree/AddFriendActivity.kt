@@ -16,14 +16,17 @@ class AddFriendActivity : Activity() {
     }
 
     fun onClickAddFriend(view: View) {
-        val name = findViewById<EditText>(R.id.addName).text
+        val name = findViewById<EditText>(R.id.addName).text.toString()
         val birthDatePicker: DatePicker = findViewById(R.id.datePicker)
         val birthDate = "${birthDatePicker.dayOfMonth}.${birthDatePicker.month}.${birthDatePicker.year}"
-        val result = Intent().putExtra("name", name.toString()).putExtra("Birth Date", birthDate)
-        Log.d("Result", name.toString())
-        Log.d("Result", result.toString())
-        setResult(RESULT_OK,result)
+        val newFriend = Friend(name, birthDate)
 
+        MainActivity.globalFriendList.add(newFriend)
+
+
+
+        val result = Intent().putExtra("name", name).putExtra("Birth Date", birthDate)
+        setResult(RESULT_OK,result)
         finish()
     }
 }
