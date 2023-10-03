@@ -14,10 +14,6 @@ import androidx.fragment.app.ListFragment
 
 class MovieListFragment : ListFragment() {
 
-    private lateinit var listView: ListView
-    private lateinit var adapter: ArrayAdapter<String>
-
-
     private var movieList: Array<String> = arrayOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
