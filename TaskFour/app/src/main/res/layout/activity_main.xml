@@ -10,13 +10,14 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment1"
-        android:name=".MovieListFragment"
-        android:layout_width="0px"
-        android:layout_height="match_parent"
+        android:name="com.example.taskfour.MovieListFragment"
+        android:layout_width="364dp"
+        android:layout_height="552dp"
         android:layout_weight="1" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment2"
-        android:name="inft2501.leksjon_04.Fragment2"
+        android:name="com.example.taskfour.MovieContentFragment"
         android:layout_width="0px"
         android:layout_height="match_parent"
         android:layout_weight="1" />
