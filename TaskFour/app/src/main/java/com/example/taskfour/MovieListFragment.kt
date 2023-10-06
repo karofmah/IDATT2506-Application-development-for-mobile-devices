@@ -21,18 +21,6 @@ class MovieListFragment : ListFragment() {
         }
 
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-/*
-        val listView = view.findViewById<View>(R.id.movieList) as ListView
-        listView.onItemClickListener =
-            OnItemClickListener { _: AdapterView<*>?, _: View, index: Int, _: Long ->
-                val result = Bundle()
-                result.putInt("df1",index)
-                parentFragmentManager.setFragmentResult("dataFrom",result)
-            }*/
-
-    }
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
         super.onListItemClick(l, v, position, id)

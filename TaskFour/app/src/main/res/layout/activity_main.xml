@@ -2,27 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment1"
-        android:name="com.example.taskfour.MovieListFragment"
-        android:layout_width="343dp"
-        android:layout_height="169dp"
-        tools:context=".MovieListFragment"
-        tools:layout="@layout/fragment_movie_list" />
-
-    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment2"
         android:name="com.example.taskfour.MovieContentFragment"
-        android:layout_width="346dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="492dp"
         tools:context=".MovieContentFragment"
         tools:layout="@layout/fragment_movie_content" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment1"
+        android:name="com.example.taskfour.MovieListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="234dp"
+        tools:context=".MovieListFragment"
+        tools:layout="@layout/fragment_movie_list" />
 
 
 </LinearLayout>

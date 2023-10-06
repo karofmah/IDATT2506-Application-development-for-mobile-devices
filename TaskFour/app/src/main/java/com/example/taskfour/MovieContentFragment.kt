@@ -1,7 +1,6 @@
 package com.example.taskfour
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +23,6 @@ class MovieContentFragment : Fragment() {
             title.text = resources.getStringArray(R.array.movieTitleList)[index]
             image.setImageResource(movieImages[index])
             description.text = resources.getStringArray(R.array.movieDescriptionList)[index]
-            Log.d("movieImage", R.drawable.the_batman.toString())
         }
     }
     override fun onCreateView(
@@ -32,6 +30,4 @@ class MovieContentFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_movie_content, container, false);
     }
-
-
 }
