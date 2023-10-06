@@ -14,7 +14,7 @@ class MovieListFragment : ListFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieList = resources.getStringArray(R.array.movieList)
+        movieList = resources.getStringArray(R.array.movieTitleList)
         listAdapter = activity?.let {
             ArrayAdapter(it, android.R.layout.simple_list_item_1,
                 android.R.id.text1, movieList)

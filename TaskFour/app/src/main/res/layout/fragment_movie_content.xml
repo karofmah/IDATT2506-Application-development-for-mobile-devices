@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MovieContentFragment">
 
 
     <TextView
-        android:id="@+id/movieDescription"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text=""
-        android:textSize="50sp" />
+        android:id="@+id/movieTitle"
+        android:layout_width="366dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/the_batman"
+        android:textSize="30sp" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/movieImage"
+        android:layout_width="294dp"
+        android:layout_height="418dp"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="hey"
+        android:src="@drawable/the_batman" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:text="TextView" />
+
+
+</LinearLayout>

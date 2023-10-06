@@ -1,16 +1,20 @@
 <resources>
     <string name="app_name">TaskFour</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string-array name="movieList">
-        <item>The Batman</item>
+    <string name="the_batman">The Batman</string>
+
+    <string-array name="movieTitleList">
+        <item>@string/the_batman</item>
         <item>Now You See Me</item>
         <item>Blue Beetle</item>
     </string-array>
+
+
     <string-array name="movieDescriptionList">
         <item>About 1</item>
         <item>About 2</item>
         <item>About 3</item>
     </string-array>
+
 </resources>
