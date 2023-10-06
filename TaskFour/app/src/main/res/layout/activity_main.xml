@@ -22,7 +22,9 @@
         android:name="com.example.taskfour.MovieContentFragment"
         android:layout_width="346dp"
         android:layout_height="50dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:context = ".MovieContentFragment"
+        />
 
 
 </LinearLayout>

@@ -7,9 +7,10 @@
 
 
     <TextView
+        android:id="@+id/movieDescription"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
+        android:text=""
         android:textSize="50sp" />
 
 </FrameLayout>

@@ -7,10 +7,4 @@
 
 
 
-    <ListView
-        android:id="@+id/movieList"
-        android:layout_width="260dp"
-        android:layout_height="341dp" />
-
-
 </RelativeLayout>

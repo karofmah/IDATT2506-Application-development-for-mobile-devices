@@ -8,4 +8,9 @@
         <item>Now You See Me</item>
         <item>Blue Beetle</item>
     </string-array>
+    <string-array name="movieDescriptionList">
+        <item>About 1</item>
+        <item>About 2</item>
+        <item>About 3</item>
+    </string-array>
 </resources>
