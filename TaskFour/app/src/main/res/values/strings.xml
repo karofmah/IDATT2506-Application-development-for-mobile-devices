@@ -8,6 +8,8 @@
         When a sadistic serial killer begins murdering key political figures in Gotham,
         Batman is forced to investigate the city\'s hidden corruption and question his family\'s involvement.
     </string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
 
     <string-array name="movieTitleList">
         <item>@string/the_batman_title</item>

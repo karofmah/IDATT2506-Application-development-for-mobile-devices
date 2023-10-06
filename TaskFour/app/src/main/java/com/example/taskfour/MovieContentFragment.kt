@@ -10,8 +10,9 @@ import androidx.fragment.app.Fragment
 
 
 class MovieContentFragment : Fragment() {
-
-    private val movieImages = listOf(R.drawable.the_batman,R.drawable.now_you_see_me, R.drawable.blue_beetle)
+    companion object{
+        var movieImages = listOf(R.drawable.the_batman,R.drawable.now_you_see_me, R.drawable.blue_beetle)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val title: TextView = view.findViewById(R.id.movieTitle)
@@ -23,6 +24,7 @@ class MovieContentFragment : Fragment() {
             title.text = resources.getStringArray(R.array.movieTitleList)[index]
             image.setImageResource(movieImages[index])
             description.text = resources.getStringArray(R.array.movieDescriptionList)[index]
+            MovieListFragment.currentMovieIndex = index
         }
     }
     override fun onCreateView(
