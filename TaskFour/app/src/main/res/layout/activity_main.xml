@@ -11,7 +11,7 @@
         android:id="@+id/fragment1"
         android:name="com.example.taskfour.MovieListFragment"
         android:layout_width="343dp"
-        android:layout_height="252dp"
+        android:layout_height="169dp"
         tools:context=".MovieListFragment"
         tools:layout="@layout/fragment_movie_list" />
 

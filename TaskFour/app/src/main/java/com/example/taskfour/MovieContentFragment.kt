@@ -17,11 +17,13 @@ class MovieContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val title: TextView = view.findViewById(R.id.movieTitle)
         val image: ImageView = view.findViewById(R.id.movieImage)
+        val description: TextView = view.findViewById(R.id.movieDescription)
 
-        parentFragmentManager.setFragmentResultListener("result", this) { requestKey, result ->
+        parentFragmentManager.setFragmentResultListener("result", this) { _, result ->
             val index = result.getInt("index")
             title.text = resources.getStringArray(R.array.movieTitleList)[index]
             image.setImageResource(movieImages[index])
+            description.text = resources.getStringArray(R.array.movieDescriptionList)[index]
             Log.d("movieImage", R.drawable.the_batman.toString())
         }
     }
