@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TaskFive</string>
-    <string name="card_number">Card Number</string>
-    <string name="name">Name</string>
-    <string name="enter_game">Enter game</string>
+    <string name="registrer">Registrer</string>
+    <string name="kortnummer">Kortnummer</string>
+    <string name="navn">Navn</string>
+    <string name="gjett_nummer">Gjett nummer</string>
+    <string name="oppgi_tall">Oppgi tall</string>
 </resources>
