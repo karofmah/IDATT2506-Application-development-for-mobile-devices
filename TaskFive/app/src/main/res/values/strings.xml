@@ -5,4 +5,5 @@
     <string name="navn">Navn</string>
     <string name="gjett_nummer">Gjett nummer</string>
     <string name="oppgi_tall">Oppgi tall</string>
+    <string name="guesses_left">Guesses left:</string>
 </resources>

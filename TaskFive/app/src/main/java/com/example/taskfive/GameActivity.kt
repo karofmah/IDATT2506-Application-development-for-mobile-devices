@@ -1,35 +1,26 @@
 package com.example.taskfive
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import okhttp3.*
-import okio.ByteString.Companion.encode
-import java.io.IOException
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 
-class GameActivity : Activity() {
+class GameActivity : AppCompatActivity() {
 
     private val URL = "https://bigdata.idi.ntnu.no/mobil/tallspill.jsp"
 
-    private var guessCount = 0
+    private val network: HttpWrapper = HttpWrapper(URL)
 
-    private val client = OkHttpClient.Builder()
-        .cookieJar(object : CookieJar {
-            private val myCookieStore = mutableMapOf<HttpUrl, List<Cookie>>()
+    private var guessesLeft = 3
 
-            override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
-                myCookieStore[url] = cookies
-            }
-
-            override fun loadForRequest(url: HttpUrl): List<Cookie> {
-                return myCookieStore[url] ?: listOf()
-            }
-        })
-        .build()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -37,82 +28,57 @@ class GameActivity : Activity() {
 
         val registerButton: Button = findViewById(R.id.registerButton)
         registerButton.setOnClickListener {
-            performRegisterRequest()
+            performRequest(requestRegisterParameters())
         }
         val guessNumberButton: Button = findViewById(R.id.guessNumberButton)
         guessNumberButton.setOnClickListener {
-            performGuessNumberRequest()
+            performRequest(requestGuessNumberParameters())
+
         }
     }
-    private fun performRegisterRequest(){
-        guessCount = 0
-
+    @SuppressLint("SuspiciousIndentation")
+    private fun requestRegisterParameters(): Map<String, String> {
+        guessesLeft = 3
         val name = findViewById<EditText>(R.id.editName).text.toString()
         val cardNumber = findViewById<EditText>(R.id.editCardNumber).text.toString()
+        findViewById<TextView>(R.id.countText).text = "0"
 
-        val parameters = FormBody.Builder()
-            .add("navn", name)
-            .add("kortnummer",cardNumber)
-            .build()
-
-        val request = Request.Builder()
-            .url(URL)
-            .post(parameters)
-            .addHeader("Content-Type", "text/plain; charset=utf-8")
-            .build()
-
-        Log.d("response", request.toString())
-
-        client.newCall(request).enqueue(object: Callback{
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if(response.isSuccessful){
-                    val myResponse = response.body?.string()
-                    Log.d("response", response.toString())
-                    runOnUiThread {
-                        val resultText = findViewById<TextView>(R.id.registerResultText)
-                        resultText.text = myResponse
-                    }
-                }
-            }
-
-        })
+        return mapOf(
+                    "navn" to name,
+                    "kortnummer" to cardNumber,
+                )
     }
-    private fun performGuessNumberRequest(){
-        val number = findViewById<EditText>(R.id.guessNumberText).text.toString()
-
-        if(guessCount < 3) guessCount++
-        val parameters = FormBody.Builder()
-            .add("tall", number)
-            .build()
-
-        val request = Request.Builder()
-            .url(URL)
-            .post(parameters)
-            .addHeader("Content-Type", "text/plain; charset=utf-8")
-            .build()
-        Log.d("response", request.toString())
-
-        client.newCall(request).enqueue(object: Callback{
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if(response.isSuccessful){
-                    val myResponse = response.body?.string().toString()
-                    Log.d("response", response.toString())
-                    runOnUiThread {
-                        val resultText = findViewById<TextView>(R.id.guessResultText)
-                        resultText.text = myResponse
-                    }
-                }
-            }
-
-        })
+    private fun requestGuessNumberParameters(): Map<String, String> {
+        if(guessesLeft > 0) guessesLeft--
+            val number = findViewById<EditText>(R.id.guessNumberText).text.toString()
+            return mapOf(
+                "tall" to number
+            )
     }
+    private fun performRequest(parameterList:
+    Map<String, String>) {
+        CoroutineScope(IO).launch {
+            val response: String = try {
+                network.get(parameterList)
 
+            } catch (e: Exception) {
+                Log.e("performRequest()", e.message!!)
+                e.toString()
+            }
+            MainScope().launch {
+                setResult(response)
+            }
+        }
+    }
+    private fun setResult(response: String?) {
+        findViewById<TextView>(R.id.resultText).text = response
+        if(guessesLeft == 0){
+            findViewById<TextView>(R.id.countText).text = ""
+
+        }else{
+            findViewById<TextView>(R.id.countText).text = (guessesLeft).toString()
+
+        }
+
+    }
 }
