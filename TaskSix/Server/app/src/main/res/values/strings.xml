@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Server</string>
+    <string name="send_message">Send message</string>
+    <string name="enter_message">Enter message</string>
 </resources>

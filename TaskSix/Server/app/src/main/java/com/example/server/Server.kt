@@ -1,5 +1,8 @@
+
 package com.example.server
 
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +16,13 @@ import java.io.PrintWriter
 import java.net.ServerSocket
 import java.net.Socket
 
-class Server(private val textView: TextView, private val PORT: Int = 12347) {
+class Server(activity: MainActivity, private val textView: TextView, private val PORT: Int = 12345) {
+    private val serverText: EditText = activity.findViewById(R.id.message)
+    private val sendButton: Button = activity.findViewById(R.id.sendButton)
+
+    private var clientSocket: Socket? = null
+    private var clientWriter: PrintWriter? = null
+
     /**
      * Egendefinert set() som gjør at vi enkelt kan endre teksten som vises i skjermen til
      * emulatoren med
@@ -30,27 +39,17 @@ class Server(private val textView: TextView, private val PORT: Int = 12347) {
 
     fun start() {
         CoroutineScope(Dispatchers.IO).launch {
-
             try {
-                ui = "Starter Tjener ..."
-                // "innapropriate blocking method call" advarsel betyr at tråden
-                // stopper helt opp og ikke går til neste linje før denne fullfører, i dette
-                // eksempelet er ikke dette så farlig så vi ignorerer advarselen.
-                withContext(Dispatchers.IO) {
-                    ServerSocket(PORT).use { serverSocket: ServerSocket ->
+                ui = "Starting server"
+                val serverSocket = ServerSocket(PORT)
+                ui = "ServerSocket is created, waiting for a client to connect..."
 
-                        ui = "ServerSocket opprettet, venter på at en klient kobler seg til...."
-
-                        serverSocket.accept().use { clientSocket: Socket ->
-
-                            ui = "En Klient koblet seg til:\n$clientSocket"
-
-                            //send tekst til klienten
-                            sendToClient(clientSocket, "Velkommen Klient!")
-
-                            // Hent tekst fra klienten
-                            readFromClient(clientSocket)
-                        }
+                while (true) {
+                    val client = withContext(Dispatchers.IO) {
+                        serverSocket.accept()
+                    }
+                    CoroutineScope(Dispatchers.IO).launch {
+                        handleClient(client)
                     }
                 }
             } catch (e: IOException) {
@@ -60,15 +59,73 @@ class Server(private val textView: TextView, private val PORT: Int = 12347) {
         }
     }
 
-    private fun readFromClient(socket: Socket) {
-        val reader = BufferedReader(InputStreamReader(socket.getInputStream()))
-        val message = reader.readLine()
-        ui = "Klienten sier:\n$message"
+    private fun handleClient(client: Socket) {
+        clientSocket = client
+        ui = "A client is conn  ected:\n$clientSocket"
+
+        sendToClient("Welcome client!")
+
+        listenForClientMessages()
     }
 
-    private fun sendToClient(socket: Socket, message: String) {
-        val writer = PrintWriter(socket.getOutputStream(), true)
-        writer.println(message)
-        ui = "Sendte følgende til klienten:\n$message"
+    init {
+        sendButton.setOnClickListener {
+            val messageToSend = serverText.text.toString()
+            if (messageToSend.isNotBlank()) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    sendMessageToClient(messageToSend)
+                }
+                serverText.text.clear()
+            }
+        }
     }
+
+    private fun listenForClientMessages() {
+        try {
+            val reader = BufferedReader(InputStreamReader(clientSocket?.getInputStream()))
+            while (true) {
+                val message = reader.readLine()
+                if (message != null) {
+                    ui = "Client says:\n$message"
+                } else {
+
+                    reader.close()
+                    clientSocket?.close()
+                    break
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+            ui = "Error reading message from client: ${e.message}"
+        }
+    }
+
+    private fun sendToClient(message: String) {
+        if (clientWriter == null) {
+            clientSocket?.let {
+                clientWriter = PrintWriter(it.getOutputStream(), true)
+            } ?: run {
+                ui = "Failed to send message: clientSocket is null"
+                return
+            }
+        }
+        clientWriter?.println(message)
+        ui = "Sent following to client:\n$message"
+    }
+
+    private fun sendMessageToClient(message: String) {
+        try {
+            clientSocket?.let {
+                val writer = PrintWriter(it.getOutputStream(), true)
+                writer.println(message)
+                ui = "Message sent: $message"
+            } ?: run {
+                ui = "Failed to send message: clientSocket is null"
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ui = "Error sending message: ${e.message}"
+        }
+    }
+
 }
