@@ -3,4 +3,11 @@
     <string name="all_movies">All movies</string>
     <string name="movies_by_christopher_nolan">Movies by Christopher Nolan</string>
     <string name="actors_in_oppenheimer">Actors in Oppenheimer</string>
+    <string name="back">Back</string>
+    <string name="white_key">White</string>
+    <string name="white_value">#FFFFFFFF</string>
+    <string name="white">White</string>
+    <string name="yellow">Yellow</string>
+    <string name="teal">Teal</string>
+
 </resources>
