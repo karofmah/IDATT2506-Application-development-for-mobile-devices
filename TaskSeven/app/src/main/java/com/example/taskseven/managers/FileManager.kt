@@ -14,7 +14,7 @@ class FileManager(private val activity: AppCompatActivity) {
     private var dir: File = activity.filesDir
     private var file: File = File(dir, filename)
 
-    fun convertJsonToList(applicationContext: Context): JSONArray {
+    fun readMovieFromFile(applicationContext: Context): JSONArray {
         val jsonData = applicationContext.resources.openRawResource(
             applicationContext.resources.getIdentifier(
                 "movies",
@@ -28,4 +28,5 @@ class FileManager(private val activity: AppCompatActivity) {
         Log.d("data",movies.toString())
         return movies;
     }
+
 }

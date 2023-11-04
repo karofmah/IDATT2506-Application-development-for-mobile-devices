@@ -30,12 +30,18 @@ class MainActivity : AppCompatActivity() {
         databaseManager = DatabaseManager(this)
         addMoviesToDatabase();
 
-        mainLayout.button.setOnClickListener {
+        mainLayout.allMoviesBtn.setOnClickListener{
+
+        }
+        mainLayout.moviesByDirBtn.setOnClickListener {
+
+        }
+        mainLayout.actorsInMovieBtn.setOnClickListener {
 
         }
     }
     private fun addMoviesToDatabase(){
-        val movies = fileManager.convertJsonToList(applicationContext)
+        val movies = fileManager.readMovieFromFile(applicationContext)
 
         for (i in 0 until movies.length()) {
             val movieJsonObject = movies.getJSONObject(i)

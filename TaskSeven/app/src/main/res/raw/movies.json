@@ -1,33 +1,29 @@
 {
   "movies": [
     {
-      "title": "Title1",
-      "director": "director1",
-      "actors": ["actor1,actor2"]
+      "title": "Oppenheimer",
+      "director": "Christopher Nolan",
+      "actors": ["Cillian Murphy", "Emily Blunt"]
     },
     {
-      "title": "Title2",
-      "director": "director2",
-      "actors": ["actor1","actor2"]
-
+      "title": "The Dark Knight",
+      "director": "Christopher Nolan",
+      "actors": ["Christian Bale","Heath Ledger"]
     },
     {
-      "title": "Title2",
-      "director": "director2",
-      "actors": ["actor1","actor2"]
-
+      "title": "Avengers: Endgame",
+      "director": "Anthony Russo",
+      "actors": ["Robert Downey Jr.","Chris Evans"]
     },
     {
-      "title": "Title2",
-      "director": "director2",
-      "actors": ["actor1","actor2"]
-
+      "title": "The Amazing Spider-Man ",
+      "director": "Marc Webb",
+      "actors": ["Andrew Garfield","Emma Stone"]
     },
     {
-      "title": "Title2",
-      "director": "director2",
-      "actors": ["actor1","actor2"]
-
+      "title": "The Hunger Games",
+      "director": "Gary Ross",
+      "actors": ["Jennifer Lawrence","Josh Hutcherson"]
     }
   ]
 }

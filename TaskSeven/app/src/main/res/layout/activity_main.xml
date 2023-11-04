@@ -6,23 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="169dp"
+        android:id="@+id/allMoviesBtn"
+        android:layout_width="204dp"
+        android:layout_height="54dp"
+        android:text="@string/all_movies"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="66dp"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/moviesByDirBtn"
+        android:layout_width="201dp"
+        android:layout_height="84dp"
+        android:text="@string/movies_by_christopher_nolan"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="148dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/actorsInMovieBtn"
+        android:layout_width="196dp"
+        android:layout_height="73dp"
+        android:text="@string/actors_in_oppenheimer"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="263dp"
+        tools:ignore="MissingConstraints" />
+
+    <ListView
+        android:id="@+id/result"
+        android:layout_width="304dp"
+        android:layout_height="354dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
