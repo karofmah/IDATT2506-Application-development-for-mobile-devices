@@ -5,7 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.taskseven"
-    compileSdk = 33
+    compileSdk = 34
+
+    viewBinding{
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.example.taskseven"

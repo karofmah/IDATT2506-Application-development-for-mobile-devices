@@ -1,0 +1,33 @@
+{
+  "movies": [
+    {
+      "title": "Title1",
+      "director": "director1",
+      "actors": ["actor1,actor2"]
+    },
+    {
+      "title": "Title2",
+      "director": "director2",
+      "actors": ["actor1","actor2"]
+
+    },
+    {
+      "title": "Title2",
+      "director": "director2",
+      "actors": ["actor1","actor2"]
+
+    },
+    {
+      "title": "Title2",
+      "director": "director2",
+      "actors": ["actor1","actor2"]
+
+    },
+    {
+      "title": "Title2",
+      "director": "director2",
+      "actors": ["actor1","actor2"]
+
+    }
+  ]
+}
