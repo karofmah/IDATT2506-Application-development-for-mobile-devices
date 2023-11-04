@@ -2,9 +2,37 @@ package com.example.taskseven.service
 
 import android.content.Context
 import com.example.taskseven.managers.DatabaseManager
+import com.example.taskseven.managers.FileManager
+import org.json.JSONObject
 
-class Database(context: Context) : DatabaseManager(context) {
+class Database(context: Context,fileManager: FileManager) : DatabaseManager(context) {
 
+
+    init{
+        try{
+
+            this.clear()
+
+            val moviesString = fileManager.readMoviesFromFile("movies")
+            val movies = JSONObject(moviesString).getJSONArray("movies")
+
+            for (i in 0 until movies.length()) {
+                val movieJsonObject = movies.getJSONObject(i)
+                val title = movieJsonObject.getString("title")
+                val director = movieJsonObject.getString("director")
+                val actorsJsonArray = movieJsonObject.getJSONArray("actors")
+
+                val actorsList = mutableListOf<String>()
+                for (j in 0 until actorsJsonArray.length()) {
+                    actorsList.add(actorsJsonArray.getString(j))
+                }
+                this.insert(title, director, actorsList)
+
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
     val allMovies: ArrayList<String>
         get() = performRawQuery(
             select = arrayOf("$MOVIES_TABLE_NAME.$COLUMN_TITLE"),

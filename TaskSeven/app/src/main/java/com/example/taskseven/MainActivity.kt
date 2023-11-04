@@ -1,24 +1,19 @@
 package com.example.taskseven
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.example.taskseven.databinding.ActivityMainBinding
-import com.example.taskseven.managers.DatabaseManager
 import com.example.taskseven.managers.FileManager
 import com.example.taskseven.service.Database
-
-import org.json.JSONArray
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainLayout: ActivityMainBinding
     private lateinit var db: Database
     private lateinit var fileManager: FileManager
-    private lateinit var databaseManager: DatabaseManager
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,38 +21,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainLayout.root)
 
         fileManager = FileManager(this)
-        db = Database(this)
-        databaseManager = DatabaseManager(this)
-        addMoviesToDatabase();
+        db = Database(this,fileManager)
 
-        mainLayout.allMoviesBtn.setOnClickListener{
 
-        }
-        mainLayout.moviesByDirBtn.setOnClickListener {
-
-        }
-        mainLayout.actorsInMovieBtn.setOnClickListener {
-
-        }
+        fileManager.writeToFile("my_movies.json", fileManager.readMoviesFromFile("movies"))
+        val fileContentForReadAndWrite = fileManager.readFileFromInternalStorage("my_movies.json")
+        Log.d("StartActivity", "File content from read and write: $fileContentForReadAndWrite")
     }
-    private fun addMoviesToDatabase(){
-        val movies = fileManager.readMovieFromFile(applicationContext)
-
-        for (i in 0 until movies.length()) {
-            val movieJsonObject = movies.getJSONObject(i)
-            val title = movieJsonObject.getString("title")
-            val director = movieJsonObject.getString("director")
-            val actorsJsonArray = movieJsonObject.getJSONArray("actors")
-
-            val actorsList = mutableListOf<String>()
-            for (j in 0 until actorsJsonArray.length()) {
-                actorsList.add(actorsJsonArray.getString(j))
-            }
-
-            databaseManager.clear()
-            databaseManager.insert(title, director, actorsList)
-        }
+    private fun showResults(list: ArrayList<String>) {
+        val res = StringBuffer("")
+        for (s in list) res.append("$s\n")
+        mainLayout.result.text = res
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+       // menuInflater.inflate(R.menu.settings, menu)
+        menu.add(0, 1, 0, "All movies")
+        menu.add(0, 2, 0, "All movies by Christopher Nolan")
+        menu.add(0, 3, 0, "Alle actors in Oppenheimer")
+        return super.onCreateOptionsMenu(menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            //R.id.settings -> startActivity(Intent("inft2501.leksjon_07.SettingsActivity"))
+            1             -> showResults(db.allMovies)
+            2             -> showResults(db.getMoviesByDirector("Christopher Nolan"))
+            3             -> showResults(db.getActorsForMovie("Oppenheimer"))
+            else          -> return false
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
