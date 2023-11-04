@@ -1,7 +1,6 @@
 package com.example.taskseven
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -23,10 +22,7 @@ class MainActivity : AppCompatActivity() {
         fileManager = FileManager(this)
         db = Database(this,fileManager)
 
-
-        fileManager.writeToFile("my_movies.json", fileManager.readMoviesFromFile("movies"))
-        val fileContentForReadAndWrite = fileManager.readFileFromInternalStorage("my_movies.json")
-        Log.d("StartActivity", "File content from read and write: $fileContentForReadAndWrite")
+        fileManager.write(fileManager.readMoviesFromFile(applicationContext))
     }
     private fun showResults(list: ArrayList<String>) {
         val res = StringBuffer("")

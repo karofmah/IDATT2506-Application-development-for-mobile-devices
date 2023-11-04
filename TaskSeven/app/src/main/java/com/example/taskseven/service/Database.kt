@@ -13,7 +13,7 @@ class Database(context: Context,fileManager: FileManager) : DatabaseManager(cont
 
             this.clear()
 
-            val moviesString = fileManager.readMoviesFromFile("movies")
+            val moviesString = fileManager.readMoviesFromFile(context )
             val movies = JSONObject(moviesString).getJSONArray("movies")
 
             for (i in 0 until movies.length()) {
